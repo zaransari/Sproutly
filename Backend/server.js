@@ -243,9 +243,10 @@ async function startServer() {
     await pool.query("SELECT 1");
     console.log("MySQL database connected successfully!");
 
-    app.listen(PORT, () => {
-      console.log(`Sproutly backend running at http://localhost:${PORT}`);
-    });
+    
+    app.listen(PORT, "0.0.0.0", () => {
+  console.log(`Sproutly backend running on port ${PORT}`);
+});
   } catch (error) {
     console.error("Database connection failed:", error.message);
   }
