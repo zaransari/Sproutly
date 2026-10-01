@@ -1,0 +1,388 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Our Plants | Sproudly</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <a href="index.html" class="logo">🌿 Sproudly</a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="plants.html" class="active">Plants</a>
+            <a href="inventory.html">Inventory</a>
+            <a href="orders.html">Orders</a>
+            <a href="care.html">Plant Care</a>
+            <a href="admin.html">Admin</a>
+        </nav>
+    </header>
+
+    <!-- PAGE HERO -->
+    <section class="plants-hero">
+        <span class="tagline">A LITTLE MORE NATURE</span>
+
+        <h1>Find Your Green Companion</h1>
+
+        <p>
+            Discover beautiful plants that bring life, freshness,
+            and a little happiness to your space.
+        </p>
+    </section>
+
+    <!-- SEARCH AND FILTER -->
+    <section class="plant-controls">
+
+        <input
+            type="text"
+            id="plantSearch"
+            placeholder="Search your favorite plant..."
+        >
+
+        <select id="categoryFilter">
+            <option value="all">All Categories</option>
+            <option value="indoor">Indoor Plants</option>
+            <option value="outdoor">Outdoor Plants</option>
+            <option value="flowering">Flowering Plants</option>
+            <option value="fruit">Fruit Plants</option>
+            <option value="succulent">Succulents</option>
+        </select>
+
+    </section>
+
+    <!-- PLANT COLLECTION -->
+    <section class="plant-collection">
+
+        <div class="section-heading">
+            <span class="tagline">OUR COLLECTION</span>
+            <h2>Plants Made for Your Space</h2>
+            <p>Choose your favorite and bring nature home.</p>
+        </div>
+
+        <div class="plant-grid" id="plantGrid">
+
+            <!-- PLANT 1: MONEY PLANT -->
+            <div class="plant-card" data-category="indoor">
+                <div class="plant-photo">
+                    
+                    <img src="images/money.jpeg" alt="Money Plant">
+                    <span class="plant-badge">Indoor</span>
+                </div>
+                <div class="plant-info">
+                    <p class="plant-category">INDOOR PLANT</p>
+                    <h3>Money Plant</h3>
+                    <p class="plant-description">A lovely green plant for your home.</p>
+                    <div class="plant-bottom">
+                        <span class="plant-price">₹149</span>
+                        <button class="cart-btn" data-name="Money Plant">Add to Cart +</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PLANT 2: SNAKE PLANT -->
+            <div class="plant-card" data-category="indoor">
+                <div class="plant-photo">
+                    
+                    
+                    <img src="images/snake.jpeg" alt="Snake Plant">
+                    <span class="plant-badge">Indoor</span>
+                </div>
+                <div class="plant-info">
+                    <p class="plant-category">INDOOR PLANT</p>
+                    <h3>Snake Plant</h3>
+                    <p class="plant-description">A low-maintenance plant for your room.</p>
+                    <div class="plant-bottom">
+                        <span class="plant-price">₹299</span>
+                        <button class="cart-btn" data-name="Snake Plant">Add to Cart +</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PLANT 3: ALOE VERA -->
+            <div class="plant-card" data-category="succulent">
+                <div class="plant-photo">
+                    <img src="https://images.unsplash.com/photo-1509423350716-97f9360b4e09?auto=format&fit=crop&w=700&q=80" alt="Aloe Vera">
+                    <span class="plant-badge">Succulent</span>
+                </div>
+                <div class="plant-info">
+                    <p class="plant-category">SUCCULENT</p>
+                    <h3>Aloe Vera</h3>
+                    <p class="plant-description">A popular plant for sunny corners.</p>
+                    <div class="plant-bottom">
+                        <span class="plant-price">₹99</span>
+                        <button class="cart-btn" data-name="Aloe Vera">Add to Cart +</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PLANT 4: PEACE LILY -->
+            <div class="plant-card" data-category="indoor">
+                <div class="plant-photo">
+                    
+                    <img src="images/lily.jpeg" alt="Peace Lily">
+                    <span class="plant-badge">Indoor</span>
+                </div>
+                <div class="plant-info">
+                    <p class="plant-category">INDOOR PLANT</p>
+                    <h3>Peace Lily</h3>
+                    <p class="plant-description">A graceful plant with elegant green leaves.</p>
+                    <div class="plant-bottom">
+                        <span class="plant-price">₹349</span>
+                        <button class="cart-btn" data-name="Peace Lily">Add to Cart +</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PLANT 5: ARECA PALM -->
+            <div class="plant-card" data-category="indoor">
+                <div class="plant-photo">
+                    
+                    <img src="images/areca.jpeg" alt="Areca plum Plant">
+                    <span class="plant-badge">Indoor</span>
+                </div>
+                <div class="plant-info">
+                    <p class="plant-category">INDOOR PLANT</p>
+                    <h3>Areca Palm</h3>
+                    <p class="plant-description">A leafy palm for a fresh, green space.</p>
+                    <div class="plant-bottom">
+                        <span class="plant-price">₹499</span>
+                        <button class="cart-btn" data-name="Areca Palm">Add to Cart +</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PLANT 6: SPIDER PLANT -->
+            <div class="plant-card" data-category="indoor">
+                <div class="plant-photo">
+                    
+                    <img src="images/spider.jpeg" alt="Spider Plant">
+                    <span class="plant-badge">Indoor</span>
+                </div>
+                <div class="plant-info">
+                    <p class="plant-category">INDOOR PLANT</p>
+                    <h3>Spider Plant</h3>
+                    <p class="plant-description">A charming plant for shelves and corners.</p>
+                    <div class="plant-bottom">
+                        <span class="plant-price">₹199</span>
+                        <button class="cart-btn" data-name="Spider Plant">Add to Cart +</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PLANT 7: ROSE -->
+            <div class="plant-card" data-category="flowering">
+                <div class="plant-photo">
+                    <img src="https://images.unsplash.com/photo-1494972308805-463bc619d34e?auto=format&fit=crop&w=700&q=80" alt="Rose Plant">
+                    <span class="plant-badge">Flowering</span>
+                </div>
+                <div class="plant-info">
+                    <p class="plant-category">FLOWERING PLANT</p>
+                    <h3>Rose Plant</h3>
+                    <p class="plant-description">A classic flowering plant for your garden.</p>
+                    <div class="plant-bottom">
+                        <span class="plant-price">₹199</span>
+                        <button class="cart-btn" data-name="Rose Plant">Add to Cart +</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PLANT 8: HIBISCUS -->
+            <div class="plant-card" data-category="flowering">
+                <div class="plant-photo">
+                    
+                    <img src="images/hibiscus.jpeg" alt="Hibiscus Plant">
+                    <span class="plant-badge">Flowering</span>
+                </div>
+                <div class="plant-info">
+                    <p class="plant-category">FLOWERING PLANT</p>
+                    <h3>Hibiscus (Gudhal)</h3>
+                    <p class="plant-description">A colorful flowering plant for outdoor spaces.</p>
+                    <div class="plant-bottom">
+                        <span class="plant-price">₹149</span>
+                        <button class="cart-btn" data-name="Hibiscus">Add to Cart +</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PLANT 9: JASMINE -->
+            <div class="plant-card" data-category="flowering">
+                <div class="plant-photo">
+                    <img src="images/jasmin.jpeg" alt="Jasmin Plant">
+                    
+                    <span class="plant-badge">Flowering</span>
+                </div>
+                <div class="plant-info">
+                    <p class="plant-category">FLOWERING PLANT</p>
+                    <h3>Jasmine (Mogra)</h3>
+                    <p class="plant-description">A fragrant flowering plant for your garden.</p>
+                    <div class="plant-bottom">
+                        <span class="plant-price">₹199</span>
+                        <button class="cart-btn" data-name="Jasmine">Add to Cart +</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PLANT 10: TULSI -->
+            <div class="plant-card" data-category="outdoor">
+                <div class="plant-photo">
+                    
+                    <img src="images/tulsi.jpeg" alt="Tulsi Plant">
+                    <span class="plant-badge">Outdoor</span>
+                </div>
+                <div class="plant-info">
+                    <p class="plant-category">OUTDOOR PLANT</p>
+                    <h3>Tulsi</h3>
+                    <p class="plant-description">A familiar green plant for your home.</p>
+                    <div class="plant-bottom">
+                        <span class="plant-price">₹79</span>
+                        <button class="cart-btn" data-name="Tulsi">Add to Cart +</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PLANT 11: CURRY LEAF -->
+            <div class="plant-card" data-category="outdoor">
+                <div class="plant-photo">
+                    
+                    <img src="images/curry leaf.jpeg" alt="Curry Leaf Plant">
+                    <span class="plant-badge">Outdoor</span>
+                </div>
+                <div class="plant-info">
+                    <p class="plant-category">OUTDOOR PLANT</p>
+                    <h3>Curry Leaf Plant</h3>
+                    <p class="plant-description">A useful leafy plant for your home garden.</p>
+                    <div class="plant-bottom">
+                        <span class="plant-price">₹149</span>
+                        <button class="cart-btn" data-name="Curry Leaf Plant">Add to Cart +</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PLANT 12: LEMON -->
+            <div class="plant-card" data-category="fruit">
+                <div class="plant-photo">
+                    <img src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=700&q=80" alt="Lemon Plant">
+                    <span class="plant-badge">Fruit Plant</span>
+                </div>
+                <div class="plant-info">
+                    <p class="plant-category">FRUIT PLANT</p>
+                    <h3>Lemon Plant</h3>
+                    <p class="plant-description">A fruit-bearing plant for your garden.</p>
+                    <div class="plant-bottom">
+                        <span class="plant-price">₹299</span>
+                        <button class="cart-btn" data-name="Lemon Plant">Add to Cart +</button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <p id="noPlants" class="no-plants" hidden>
+            No plants found. Try another search.
+        </p>
+
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <a href="index.html" class="logo">🌿 Sproudly</a>
+        <p>Grow Green. Live Naturally.</p>
+        <p class="copyright">
+            © 2026 Sproudly Plant Nursery. All rights reserved.
+        </p>
+    </footer>
+
+    <script src="js/script.js"></script>
+
+<!-- SHOPPING CART SECTION -->
+<section class="shopping-cart" id="shoppingCart">
+    <div class="cart-heading">
+        <span class="cart-label">YOUR SELECTION</span>
+        <h2>My Shopping Cart 🛒</h2>
+        <p>Your favourite plants, all in one place.</p>
+    </div>
+
+    <div id="cartItems">
+        <p class="empty-cart">Your cart is empty. Add some plants! 🌱</p>
+    </div>
+
+    <div class="cart-total">
+        <h3>Total Amount: <span id="cartTotal">₹0</span></h3>
+        <button type="button" id="checkoutBtn" class="checkout-btn">
+            Proceed to Checkout →
+        </button>
+    </div>
+</section>
+<!-- CHECKOUT FORM -->
+<section class="checkout-section" id="checkoutSection" hidden>
+
+    <div class="checkout-heading">
+        <p class="checkout-label">ALMOST THERE 🌿</p>
+        <h2>Complete Your Order</h2>
+        <p>Please enter your details for plant delivery.</p>
+    </div>
+
+    <form id="checkoutForm" class="checkout-form">
+
+        <div class="form-group">
+            <label for="customerName">Full Name</label>
+            <input
+                type="text"
+                id="customerName"
+                name="customerName"
+                placeholder="Enter your full name"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="customerPhone">Mobile Number</label>
+            <input
+                type="tel"
+                id="customerPhone"
+                name="customerPhone"
+                placeholder="Enter your mobile number"
+                pattern="[0-9]{10}"
+                maxlength="10"
+                required
+            >
+        </div>
+
+        <div class="form-group">
+            <label for="customerAddress">Delivery Address</label>
+            <textarea
+                id="customerAddress"
+                name="customerAddress"
+                placeholder="Enter your complete address"
+                rows="4"
+                required
+            ></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="paymentMethod">Payment Method</label>
+            <select id="paymentMethod" name="paymentMethod" required>
+                <option value="">Select payment method</option>
+                <option value="Cash on Delivery">Cash on Delivery</option>
+            </select>
+        </div>
+
+        <button type="submit" class="checkout-btn">
+            Place My Order 🌱
+        </button>
+
+    </form>
+
+</section>
+</body>
+</html>

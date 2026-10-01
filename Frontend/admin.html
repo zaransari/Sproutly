@@ -1,0 +1,765 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Admin Dashboard | Sproutly</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: #f7f6ef;
+            font-family: Arial, sans-serif;
+            color: #315b43;
+        }
+
+        /* HEADER */
+        .admin-header {
+            background: #315b43;
+            color: white;
+            padding: 20px 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .admin-header h2 {
+            margin: 0;
+            font-size: 25px;
+            letter-spacing: 0.3px;
+        }
+
+        .admin-header a {
+            color: white;
+            text-decoration: none;
+            margin-left: 18px;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .admin-header a:hover {
+            opacity: 0.75;
+        }
+
+        /* MAIN */
+        .admin-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .welcome {
+            margin-bottom: 30px;
+        }
+
+        .welcome h1 {
+            margin: 0 0 8px;
+            font-size: 32px;
+            color: #244b38;
+        }
+
+        .welcome p {
+            color: #777;
+            margin: 0;
+        }
+
+        /* STATS */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+            margin-bottom: 35px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(49, 91, 67, 0.07);
+            border: 1px solid #edf0e8;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(49, 91, 67, 0.11);
+        }
+
+        .stat-icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 13px;
+            background: #eaf0e5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            font-size: 20px;
+        }
+
+        .stat-card p {
+            color: #777;
+            margin: 0 0 8px;
+            font-size: 14px;
+        }
+
+        .stat-card h2 {
+            font-size: 29px;
+            margin: 0;
+            color: #244b38;
+        }
+
+        /* DASHBOARD GRID */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 22px;
+        }
+
+        .panel {
+            background: white;
+            padding: 25px;
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(49, 91, 67, 0.06);
+            border: 1px solid #edf0e8;
+            overflow-x: auto;
+        }
+
+        .panel h2 {
+            margin: 0 0 20px;
+            font-size: 21px;
+            color: #244b38;
+        }
+
+        /* QUICK LINKS */
+        .quick-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px;
+        }
+
+        .quick-links a {
+            display: block;
+            background: #eaf0e5;
+            color: #315b43;
+            text-decoration: none;
+            padding: 20px 12px;
+            border-radius: 15px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .quick-links a:hover {
+            background: #dce8d7;
+            transform: translateY(-2px);
+        }
+
+        /* TABLE */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 420px;
+        }
+
+        th,
+        td {
+            padding: 14px 10px;
+            border-bottom: 1px solid #edf0e8;
+            text-align: left;
+            font-size: 14px;
+        }
+
+        th {
+            color: #777;
+            font-weight: 600;
+            font-size: 13px;
+        }
+
+        td {
+            color: #444;
+        }
+
+        .order-id {
+            color: #315b43;
+            font-weight: bold;
+        }
+
+        .order-total {
+            color: #315b43;
+            font-weight: bold;
+        }
+
+        .empty {
+            color: #888;
+            padding: 25px 0;
+            text-align: center;
+        }
+
+        .loading {
+            color: #777;
+            padding: 25px 0;
+            text-align: center;
+        }
+
+        .error {
+            color: #b94a48;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        /* FOOTER */
+        .admin-footer {
+            text-align: center;
+            padding: 30px 20px;
+            color: #777;
+            font-size: 13px;
+        }
+
+        /* MOBILE */
+        @media (max-width: 900px) {
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .quick-links {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-header {
+                padding: 18px 5%;
+            }
+
+            .admin-header a {
+                margin-left: 0;
+                margin-right: 12px;
+            }
+
+            .welcome h1 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="admin-header">
+
+        <h2>🌿 Sproutly Admin</h2>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="plants.html">Plants</a>
+            <a href="inventory.html">Inventory</a>
+            <a href="orders.html">Orders</a>
+        </nav>
+
+    </header>
+
+
+    <!-- MAIN -->
+    <main class="admin-container">
+
+        <section class="welcome">
+
+            <h1>Admin Dashboard 🌱</h1>
+
+            <p>
+                Welcome back! Here's your nursery overview.
+            </p>
+
+        </section>
+
+
+        <!-- STAT CARDS -->
+        <section class="stats">
+
+            <div class="stat-card">
+
+                <div class="stat-icon">📦</div>
+
+                <p>Total Orders</p>
+
+                <h2 id="totalOrders">—</h2>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">🌿</div>
+
+                <p>Plant Types</p>
+
+                <h2 id="totalPlants">—</h2>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">💰</div>
+
+                <p>Total Sales</p>
+
+                <h2 id="totalSales">₹0</h2>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">🛒</div>
+
+                <p>Total Items Sold</p>
+
+                <h2 id="totalItems">—</h2>
+
+            </div>
+
+        </section>
+
+
+        <!-- LOWER SECTION -->
+        <section class="dashboard-grid">
+
+
+            <!-- QUICK ACTIONS -->
+            <div class="panel">
+
+                <h2>⚡ Quick Actions</h2>
+
+                <div class="quick-links">
+
+                    <a href="plants.html">
+                        🌱 View Plants
+                    </a>
+
+                    <a href="inventory.html">
+                        📦 Manage Inventory
+                    </a>
+
+                    <a href="orders.html">
+                        🛍️ View Orders
+                    </a>
+
+                    <a href="care.html">
+                        🌼 Plant Care Guide
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- RECENT ORDERS -->
+            <div class="panel">
+
+                <h2>📋 Recent Orders</h2>
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+                            <th>Order ID</th>
+                            <th>Customer</th>
+                            <th>Total</th>
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="recentOrders">
+
+                        <tr>
+                            <td colspan="3" class="loading">
+                                Loading orders...
+                            </td>
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="admin-footer">
+
+        © 2026 Sproutly Plant Nursery | Admin Dashboard
+
+    </footer>
+
+
+    <!-- BACKEND CONNECTION -->
+    <script>
+
+        const API_BASE = "http://localhost:5000";
+
+
+        async function loadDashboard() {
+
+            try {
+
+                /*
+                 * Get data from backend
+                 */
+                const [ordersResponse, inventoryResponse] =
+                    await Promise.all([
+
+                        fetch(`${API_BASE}/api/orders`),
+
+                        fetch(`${API_BASE}/api/inventory`)
+
+                    ]);
+
+
+                /*
+                 * Check API response
+                 */
+                if (!ordersResponse.ok || !inventoryResponse.ok) {
+
+                    throw new Error("Backend API error");
+
+                }
+
+
+                /*
+                 * Convert response to JSON
+                 */
+                const ordersData =
+                    await ordersResponse.json();
+
+                const inventoryData =
+                    await inventoryResponse.json();
+
+
+                /*
+                 * Handle different response formats
+                 */
+                const orders =
+                    Array.isArray(ordersData)
+                        ? ordersData
+                        : (ordersData.orders || []);
+
+
+                const inventory =
+                    Array.isArray(inventoryData)
+                        ? inventoryData
+                        : (inventoryData.inventory || []);
+
+
+                /*
+                 * TOTAL ORDERS
+                 */
+                document.getElementById("totalOrders")
+                    .textContent = orders.length;
+
+
+                /*
+                 * TOTAL PLANT TYPES
+                 */
+                document.getElementById("totalPlants")
+                    .textContent = inventory.length;
+
+
+                /*
+                 * TOTAL SALES
+                 */
+                let totalSales = 0;
+
+
+                orders.forEach(order => {
+
+                    totalSales += Number(
+                        order.total_amount ??
+                        order.total ??
+                        0
+                    );
+
+                });
+
+
+                document.getElementById("totalSales")
+                    .textContent =
+                    "₹" +
+                    totalSales.toLocaleString("en-IN");
+
+
+                /*
+                 * TOTAL ITEMS SOLD
+                 *
+                 * Supports both:
+                 * items
+                 * order_items
+                 * total_items
+                 */
+                let totalItems = 0;
+
+
+                orders.forEach(order => {
+
+                    const items =
+                        order.items ||
+                        order.order_items;
+
+
+                    if (Array.isArray(items)) {
+
+                        items.forEach(item => {
+
+                            totalItems += Number(
+                                item.quantity || 0
+                            );
+
+                        });
+
+                    }
+                    else if (order.total_items != null) {
+
+                        totalItems += Number(
+                            order.total_items
+                        );
+
+                    }
+
+                });
+
+
+                document.getElementById("totalItems")
+                    .textContent = totalItems;
+
+
+                /*
+                 * SORT ORDERS
+                 * Latest order first
+                 */
+                const sortedOrders = [...orders].sort(
+                    (a, b) => {
+
+                        const idA =
+                            Number(
+                                a.order_id ??
+                                a.orderId ??
+                                0
+                            );
+
+                        const idB =
+                            Number(
+                                b.order_id ??
+                                b.orderId ??
+                                0
+                            );
+
+                        return idB - idA;
+
+                    }
+                );
+
+
+                /*
+                 * DISPLAY RECENT ORDERS
+                 */
+                const recentOrders =
+                    document.getElementById(
+                        "recentOrders"
+                    );
+
+
+                if (sortedOrders.length === 0) {
+
+                    recentOrders.innerHTML = `
+
+                        <tr>
+
+                            <td
+                                colspan="3"
+                                class="empty"
+                            >
+                                No orders yet 🌱
+                            </td>
+
+                        </tr>
+
+                    `;
+
+                    return;
+
+                }
+
+
+                recentOrders.innerHTML = "";
+
+
+                sortedOrders
+                    .slice(0, 5)
+                    .forEach(order => {
+
+                        const row =
+                            document.createElement("tr");
+
+
+                        /*
+                         * ORDER ID
+                         */
+                        const idCell =
+                            document.createElement("td");
+
+                        idCell.className =
+                            "order-id";
+
+                        idCell.textContent =
+                            "#" +
+                            (
+                                order.order_id ??
+                                order.orderId ??
+                                "N/A"
+                            );
+
+
+                        /*
+                         * CUSTOMER
+                         */
+                        const customerCell =
+                            document.createElement("td");
+
+                        customerCell.textContent =
+                            order.customer_name ??
+                            order.customerName ??
+                            "Customer";
+
+
+                        /*
+                         * TOTAL
+                         */
+                        const totalCell =
+                            document.createElement("td");
+
+                        totalCell.className =
+                            "order-total";
+
+                        const orderTotal =
+                            Number(
+                                order.total_amount ??
+                                order.total ??
+                                0
+                            );
+
+
+                        totalCell.textContent =
+                            "₹" +
+                            orderTotal.toLocaleString(
+                                "en-IN"
+                            );
+
+
+                        /*
+                         * Add cells
+                         */
+                        row.appendChild(idCell);
+
+                        row.appendChild(customerCell);
+
+                        row.appendChild(totalCell);
+
+
+                        /*
+                         * Add row
+                         */
+                        recentOrders.appendChild(row);
+
+                    });
+
+
+            }
+            catch (error) {
+
+                console.error(
+                    "Dashboard error:",
+                    error
+                );
+
+
+                document.getElementById(
+                    "recentOrders"
+                ).innerHTML = `
+
+                    <tr>
+
+                        <td
+                            colspan="3"
+                            class="error"
+                        >
+                            ⚠️ Unable to load data.
+                            Please make sure the backend
+                            server is running.
+                        </td>
+
+                    </tr>
+
+                `;
+
+
+                document.getElementById(
+                    "totalOrders"
+                ).textContent = "—";
+
+
+                document.getElementById(
+                    "totalPlants"
+                ).textContent = "—";
+
+
+                document.getElementById(
+                    "totalSales"
+                ).textContent = "₹0";
+
+
+                document.getElementById(
+                    "totalItems"
+                ).textContent = "—";
+
+            }
+
+        }
+
+
+        /*
+         * Load dashboard when page opens
+         */
+        loadDashboard();
+
+    </script>
+
+</body>
+</html>

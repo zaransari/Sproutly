@@ -1,0 +1,468 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Care Guide | Sproutly</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .care-page {
+            max-width: 1150px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .care-hero {
+            background: linear-gradient(135deg, #92bca3, #65896A);
+            color: white;
+            padding: 55px 25px;
+            border-radius: 22px;
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .care-label {
+            font-size: 13px;
+            letter-spacing: 2px;
+        }
+
+        .care-hero h1 {
+            font-size: 38px;
+            margin: 10px 0;
+        }
+
+        .care-hero p {
+            font-size: 16px;
+            line-height: 1.7;
+            max-width: 600px;
+            margin: 15px auto 0;
+        }
+
+        .care-search {
+            max-width: 600px;
+            margin: 0 auto 35px;
+        }
+
+        .care-search input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid #DDE8D7;
+            border-radius: 12px;
+            font-size: 16px;
+            outline: none;
+            box-sizing: border-box;
+            background: white;
+        }
+
+        .care-search input:focus {
+            border-color: #315B43;
+        }
+
+        .care-section-title {
+            color: #315B43;
+            font-size: 27px;
+            margin-bottom: 10px;
+        }
+
+        .care-section-subtitle {
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        .care-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 22px;
+        }
+
+        .care-card {
+            background: white;
+            border: 1px solid #DDE8D7;
+            border-radius: 18px;
+            padding: 25px;
+            box-shadow: 0 5px 20px #315B4310;
+            transition: transform 0.2s ease;
+        }
+
+        .care-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .care-icon {
+            font-size: 38px;
+            margin-bottom: 12px;
+        }
+
+        .care-card h3 {
+            color: #315B43;
+            font-size: 21px;
+            margin: 0 0 12px;
+        }
+
+        .care-tag {
+            display: inline-block;
+            background: #DDE8D7;
+            color: #315B43;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+
+        .care-info {
+            background: #F7F6EF;
+            padding: 13px;
+            border-radius: 10px;
+            margin-bottom: 12px;
+        }
+
+        .care-info p {
+            margin: 7px 0;
+            color: #555;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .care-tip {
+            color: #666;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-top: 15px;
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 40px 20px;
+            color: #777;
+            display: none;
+        }
+
+        .care-reminder {
+            margin-top: 40px;
+            background: #F7F6EF;
+            border: 1px solid #DDE8D7;
+            border-radius: 18px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .care-reminder h2 {
+            color: #315B43;
+        }
+
+        .care-reminder p {
+            color: #666;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 600px) {
+            .care-hero {
+                padding: 40px 18px;
+            }
+
+            .care-hero h1 {
+                font-size: 29px;
+            }
+
+            .care-page {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <main class="care-page">
+
+        <!-- HERO SECTION -->
+        <section class="care-hero">
+            <p class="care-label">SPROUTLY • PLANT CARE</p>
+
+            <h1>Help Your Plants Thrive 🌿</h1>
+
+            <p>
+                Every plant has its own needs.
+                Discover simple care tips to keep your green
+                friends happy, fresh and healthy.
+            </p>
+        </section>
+
+        <!-- SEARCH BAR -->
+        <section class="care-search">
+            <input
+                type="text"
+                id="careSearch"
+                placeholder="🔍 Search plants by name..."
+                aria-label="Search plants"
+            >
+        </section>
+
+        <!-- PLANT CARE CARDS -->
+        <section>
+            <h2 class="care-section-title">Plant Care Guide</h2>
+
+            <p class="care-section-subtitle">
+                Find the right care routine for your favourite plants.
+            </p>
+
+            <div class="care-grid" id="careGrid">
+
+                <!-- 1. MONEY PLANT -->
+                <article class="care-card" data-name="money plant">
+                    <div class="care-icon">🍃</div>
+                    <h3>Money Plant</h3>
+                    <span class="care-tag">Easy Care</span>
+
+                    <div class="care-info">
+                        <p>💧 <strong>Water:</strong> When the top soil feels dry.</p>
+                        <p>☀️ <strong>Sunlight:</strong> Bright, indirect light.</p>
+                        <p>🌡️ <strong>Care:</strong> Avoid standing water.</p>
+                    </div>
+
+                    <p class="care-tip">
+                        Tip: Trim long stems to encourage fuller growth.
+                    </p>
+                </article>
+
+                <!-- 2. SNAKE PLANT -->
+                <article class="care-card" data-name="snake plant">
+                    <div class="care-icon">🌿</div>
+                    <h3>Snake Plant</h3>
+                    <span class="care-tag">Easy Care</span>
+
+                    <div class="care-info">
+                        <p>💧 <strong>Water:</strong> When the soil is completely dry.</p>
+                        <p>☀️ <strong>Sunlight:</strong> Indirect light or low light.</p>
+                        <p>🌡️ <strong>Care:</strong> Avoid overwatering.</p>
+                    </div>
+
+                    <p class="care-tip">
+                        Tip: Use a pot with drainage holes to prevent water buildup.
+                    </p>
+                </article>
+
+                <!-- 3. ALOE VERA -->
+                <article class="care-card" data-name="aloe vera">
+                    <div class="care-icon">🌵</div>
+                    <h3>Aloe Vera</h3>
+                    <span class="care-tag">Easy Care</span>
+
+                    <div class="care-info">
+                        <p>💧 <strong>Water:</strong> When the soil is completely dry.</p>
+                        <p>☀️ <strong>Sunlight:</strong> Bright light with some direct sun.</p>
+                        <p>🌡️ <strong>Care:</strong> Use well-draining soil.</p>
+                    </div>
+
+                    <p class="care-tip">
+                        Tip: Avoid overwatering and choose a pot with drainage holes.
+                    </p>
+                </article>
+
+                <!-- 4. PEACE LILY -->
+                <article class="care-card" data-name="peace lily">
+                    <div class="care-icon">🤍</div>
+                    <h3>Peace Lily</h3>
+                    <span class="care-tag">Moderate Care</span>
+
+                    <div class="care-info">
+                        <p>💧 <strong>Water:</strong> When the top soil begins to dry.</p>
+                        <p>☀️ <strong>Sunlight:</strong> Bright, indirect light.</p>
+                        <p>🌡️ <strong>Care:</strong> Avoid harsh direct sunlight.</p>
+                    </div>
+
+                    <p class="care-tip">
+                        Tip: Keep soil evenly moist without making it waterlogged.
+                        Toxic to pets if eaten.
+                    </p>
+                </article>
+
+                <!-- 5. ARECA PLANT -->
+                <article class="care-card" data-name="areca plant areca palm">
+                    <div class="care-icon">🌴</div>
+                    <h3>Areca Plant</h3>
+                    <span class="care-tag">Moderate Care</span>
+
+                    <div class="care-info">
+                        <p>💧 <strong>Water:</strong> When the top soil starts drying.</p>
+                        <p>☀️ <strong>Sunlight:</strong> Bright, indirect light.</p>
+                        <p>🌡️ <strong>Care:</strong> Avoid cold drafts and soggy soil.</p>
+                    </div>
+
+                    <p class="care-tip">
+                        Tip: Wipe dusty leaves gently with a soft, damp cloth.
+                    </p>
+                </article>
+
+                <!-- 6. SPIDER PLANT -->
+                <article class="care-card" data-name="spider plant">
+                    <div class="care-icon">🌱</div>
+                    <h3>Spider Plant</h3>
+                    <span class="care-tag">Beginner Friendly</span>
+
+                    <div class="care-info">
+                        <p>💧 <strong>Water:</strong> When the top soil starts drying.</p>
+                        <p>☀️ <strong>Sunlight:</strong> Bright, indirect light.</p>
+                        <p>🌡️ <strong>Care:</strong> Keep soil lightly moist, not soggy.</p>
+                    </div>
+
+                    <p class="care-tip">
+                        Tip: Trim dry leaf tips and rotate the pot occasionally.
+                    </p>
+                </article>
+
+                <!-- 7. ROSE PLANT -->
+                <article class="care-card" data-name="rose plant rose">
+                    <div class="care-icon">🌹</div>
+                    <h3>Rose Plant</h3>
+                    <span class="care-tag">Flowering Plant</span>
+
+                    <div class="care-info">
+                        <p>💧 <strong>Water:</strong> When the top soil starts drying.</p>
+                        <p>☀️ <strong>Sunlight:</strong> Around 6 hours of direct sunlight.</p>
+                        <p>🌡️ <strong>Care:</strong> Provide well-draining soil and airflow.</p>
+                    </div>
+
+                    <p class="care-tip">
+                        Tip: Remove faded flowers and check leaves regularly.
+                    </p>
+                </article>
+
+                <!-- 8. HIBISCUS -->
+                <article class="care-card" data-name="hibiscus">
+                    <div class="care-icon">🌺</div>
+                    <h3>Hibiscus</h3>
+                    <span class="care-tag">Flowering Plant</span>
+
+                    <div class="care-info">
+                        <p>💧 <strong>Water:</strong> Keep soil evenly moist, not soggy.</p>
+                        <p>☀️ <strong>Sunlight:</strong> Several hours of direct sunlight.</p>
+                        <p>🌡️ <strong>Care:</strong> Use well-draining soil.</p>
+                    </div>
+
+                    <p class="care-tip">
+                        Tip: Regular sunlight supports flowering. Protect from extreme heat.
+                    </p>
+                </article>
+
+                <!-- 9. JASMINE -->
+                <article class="care-card" data-name="jasmine jasmin">
+                    <div class="care-icon">🌼</div>
+                    <h3>Jasmine</h3>
+                    <span class="care-tag">Flowering Plant</span>
+
+                    <div class="care-info">
+                        <p>💧 <strong>Water:</strong> When the top soil starts drying.</p>
+                        <p>☀️ <strong>Sunlight:</strong> Bright light with some direct sun.</p>
+                        <p>🌡️ <strong>Care:</strong> Provide good drainage and airflow.</p>
+                    </div>
+
+                    <p class="care-tip">
+                        Tip: Prune lightly after flowering to maintain its shape.
+                    </p>
+                </article>
+
+                <!-- 10. TULSI -->
+                <article class="care-card" data-name="tulsi">
+                    <div class="care-icon">🌿</div>
+                    <h3>Tulsi</h3>
+                    <span class="care-tag">Easy Care</span>
+
+                    <div class="care-info">
+                        <p>💧 <strong>Water:</strong> When the top soil feels dry.</p>
+                        <p>☀️ <strong>Sunlight:</strong> Around 4–6 hours of sunlight.</p>
+                        <p>🌡️ <strong>Care:</strong> Use well-draining soil.</p>
+                    </div>
+
+                    <p class="care-tip">
+                        Tip: Pinch off flower tips when needed to encourage leafy growth.
+                    </p>
+                </article>
+
+                <!-- 11. CURRY LEAF -->
+                <article class="care-card" data-name="curry leaf curry leaves">
+                    <div class="care-icon">🍃</div>
+                    <h3>Curry Leaf</h3>
+                    <span class="care-tag">Herb Plant</span>
+
+                    <div class="care-info">
+                        <p>💧 <strong>Water:</strong> When the top soil begins to dry.</p>
+                        <p>☀️ <strong>Sunlight:</strong> Around 4–6 hours of sunlight.</p>
+                        <p>🌡️ <strong>Care:</strong> Use well-draining soil.</p>
+                    </div>
+
+                    <p class="care-tip">
+                        Tip: Keep the plant in a warm, sunny spot and avoid waterlogged soil.
+                    </p>
+                </article>
+
+                <!-- 12. LEMON PLANT -->
+                <article class="care-card" data-name="lemon lemon plant">
+                    <div class="care-icon">🍋</div>
+                    <h3>Lemon Plant</h3>
+                    <span class="care-tag">Fruit Plant</span>
+
+                    <div class="care-info">
+                        <p>💧 <strong>Water:</strong> When the top soil starts drying.</p>
+                        <p>☀️ <strong>Sunlight:</strong> Around 6–8 hours of direct sunlight.</p>
+                        <p>🌡️ <strong>Care:</strong> Use well-draining soil and a sunny spot.</p>
+                    </div>
+
+                    <p class="care-tip">
+                        Tip: Choose a pot with drainage holes to prevent water buildup.
+                    </p>
+                </article>
+
+            </div>
+
+            <!-- NO RESULTS MESSAGE -->
+            <div class="no-results" id="noResults">
+                <h3>No plants found 🌱</h3>
+                <p>Try searching with another plant name.</p>
+            </div>
+        </section>
+
+        <!-- CARE REMINDER -->
+        <section class="care-reminder">
+            <h2>A Little Reminder 💚</h2>
+
+            <p>
+                Every plant is unique. Check the soil before watering,
+                provide suitable light, and adjust care according to
+                your plant's environment and season.
+            </p>
+        </section>
+
+    </main>
+
+    <!-- SEARCH FUNCTION -->
+    <script>
+        const careSearch = document.getElementById("careSearch");
+        const careCards = document.querySelectorAll(".care-card");
+        const noResults = document.getElementById("noResults");
+
+        careSearch.addEventListener("input", function() {
+            const searchValue = careSearch.value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            careCards.forEach(function(card) {
+                const plantName = card.dataset.name;
+
+                if (plantName.includes(searchValue)) {
+                    card.style.display = "";
+                    visibleCount++;
+                } else {
+                    card.style.display = "none";
+                }
+            });
+
+            noResults.style.display =
+                visibleCount === 0 ? "block" : "none";
+        });
+    </script>
+
+</body>
+</html>

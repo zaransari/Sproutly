@@ -1,0 +1,951 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sproutly | Bring Nature Home</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --green: #24483b;
+            --green-light: #dce8dc;
+            --cream: #faf9f4;
+            --peach: #f3e5da;
+            --text: #24362d;
+            --muted: #66746a;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--text);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            display: block;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        /* NAVBAR */
+
+        .navbar {
+            height: 76px;
+            padding: 0 7%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--cream);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #e9e9df;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Playfair Display', serif;
+            font-size: 29px;
+            font-weight: 700;
+            color: var(--green);
+        }
+
+        .logo span {
+            font-size: 30px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 35px;
+            font-size: 14px;
+        }
+
+        .nav-links a {
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #71947b;
+        }
+
+        .nav-button {
+            background: var(--green);
+            color: white;
+            padding: 12px 27px;
+            border-radius: 30px;
+            font-size: 14px;
+        }
+
+        .menu-btn {
+            display: none;
+            font-size: 25px;
+            border: none;
+            background: transparent;
+            color: var(--green);
+            cursor: pointer;
+        }
+
+        /* HERO SECTION */
+
+        .hero {
+            padding: 65px 7% 75px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            align-items: center;
+            gap: 55px;
+            min-height: 510px;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            background: var(--green-light);
+            color: var(--green);
+            padding: 9px 17px;
+            border-radius: 30px;
+            font-size: 13px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(38px, 4.5vw, 64px);
+            line-height: 1.15;
+            color: var(--green);
+            margin-bottom: 23px;
+            font-weight: 600;
+        }
+
+        .hero h1 em {
+            color: #bd806b;
+            font-style: normal;
+        }
+
+        .hero p {
+            font-size: 16px;
+            line-height: 1.9;
+            color: var(--muted);
+            max-width: 520px;
+            margin-bottom: 30px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 15px 25px;
+            border-radius: 35px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: 0.25s;
+        }
+
+        .btn-primary {
+            background: var(--green);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #365f4e;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--green);
+            color: var(--green);
+        }
+
+        .btn-outline:hover {
+            background: var(--green-light);
+        }
+
+        .hero-image {
+            position: relative;
+            height: 390px;
+            border-radius: 48% 48% 25px 25px;
+            overflow: hidden;
+            background: #e4e9dc;
+        }
+
+        .hero-image img {
+            height: 100%;
+        }
+
+        .image-label {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: rgba(250, 249, 244, 0.93);
+            padding: 17px 20px;
+            border-radius: 14px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+        }
+
+        .image-label strong {
+            color: var(--green);
+        }
+
+        /* SECTION COMMON */
+
+        .section {
+            padding: 75px 7%;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-heading .small-title {
+            color: #658a73;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .section-heading h2 {
+            font-family: 'Playfair Display', serif;
+            color: var(--green);
+            font-size: clamp(30px, 3vw, 43px);
+            margin-bottom: 13px;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        /* CATEGORIES */
+
+        .categories {
+            background: #f1f2e9;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.25s;
+        }
+
+        .category-card:hover {
+            transform: translateY(-6px);
+        }
+
+        .category-card img {
+            height: 205px;
+        }
+
+        .category-content {
+            padding: 22px;
+        }
+
+        .category-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 21px;
+            color: var(--green);
+            margin-bottom: 10px;
+        }
+
+        .category-content p {
+            font-size: 13px;
+            line-height: 1.7;
+            color: var(--muted);
+            margin-bottom: 18px;
+        }
+
+        .text-link {
+            color: var(--green);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        /* FEATURED PLANTS */
+
+        .plant-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 22px;
+        }
+
+        .plant-card {
+            background: white;
+            border: 1px solid #eeeeE5;
+            border-radius: 18px;
+            overflow: hidden;
+            transition: transform 0.25s;
+        }
+
+        .plant-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .plant-card img {
+            height: 230px;
+            background: #e9eee4;
+        }
+
+        .plant-info {
+            padding: 20px;
+        }
+
+        .plant-tag {
+            display: inline-block;
+            background: var(--green-light);
+            color: var(--green);
+            font-size: 11px;
+            padding: 6px 11px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+        }
+
+        .plant-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 21px;
+            color: var(--green);
+            margin-bottom: 9px;
+        }
+
+        .plant-info p {
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 17px;
+        }
+
+        .plant-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .price {
+            font-size: 19px;
+            font-weight: 700;
+            color: var(--green);
+        }
+
+        .plant-btn {
+            background: var(--green);
+            color: white;
+            padding: 10px 15px;
+            border-radius: 25px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .center-button {
+            text-align: center;
+            margin-top: 38px;
+        }
+
+        /* HOW IT WORKS */
+
+        .how-section {
+            background: #f1f2e9;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .step-card {
+            background: var(--cream);
+            padding: 35px 25px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .step-icon {
+            width: 75px;
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 22px;
+            background: #dce8dc;
+            border-radius: 50%;
+            font-size: 32px;
+        }
+
+        .step-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 23px;
+            color: var(--green);
+            margin-bottom: 13px;
+        }
+
+        .step-card p {
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--muted);
+        }
+
+        /* ABOUT BANNER */
+
+        .about-banner {
+            padding: 65px 7%;
+        }
+
+        .about-box {
+            background: var(--green);
+            color: white;
+            border-radius: 25px;
+            padding: 55px 45px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .about-box h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(28px, 3vw, 40px);
+            margin-bottom: 15px;
+        }
+
+        .about-box p {
+            max-width: 650px;
+            line-height: 1.9;
+            font-size: 15px;
+            color: #e2e9e1;
+        }
+
+        .about-box .btn {
+            background: #f4e9d8;
+            color: var(--green);
+            white-space: nowrap;
+        }
+
+        /* FOOTER */
+
+        .footer {
+            background: #e9ece3;
+            padding: 35px 7%;
+        }
+
+        .footer-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #d7ddd2;
+            margin-top: 25px;
+            padding-top: 20px;
+            font-size: 12px;
+            color: var(--muted);
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        /* RESPONSIVE DESIGN */
+
+        @media (max-width: 1000px) {
+            .category-grid,
+            .plant-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero {
+                gap: 30px;
+            }
+
+            .hero-image {
+                height: 330px;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .navbar {
+                height: 68px;
+                padding: 0 5%;
+            }
+
+            .logo {
+                font-size: 24px;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 68px;
+                left: 0;
+                right: 0;
+                padding: 25px 6%;
+                background: var(--cream);
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 23px;
+                border-bottom: 1px solid #e5e5db;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 45px 6%;
+                gap: 35px;
+            }
+
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero-image {
+                height: 310px;
+            }
+
+            .section {
+                padding: 55px 6%;
+            }
+
+            .category-grid,
+            .plant-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 13px;
+            }
+
+            .category-card img {
+                height: 155px;
+            }
+
+            .category-content {
+                padding: 15px;
+            }
+
+            .category-content h3 {
+                font-size: 18px;
+            }
+
+            .plant-card img {
+                height: 165px;
+            }
+
+            .plant-info {
+                padding: 13px;
+            }
+
+            .plant-info h3 {
+                font-size: 17px;
+            }
+
+            .plant-bottom {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-banner {
+                padding: 45px 6%;
+            }
+
+            .about-box {
+                padding: 35px 25px;
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .footer {
+                padding: 30px 6%;
+            }
+
+            .footer-top {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .category-grid,
+            .plant-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <a href="index.html" class="logo">
+            <span>🌿</span> Sproutly
+        </a>
+
+        <button class="menu-btn" id="menuBtn" aria-label="Open navigation menu">
+            ☰
+        </button>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html">Home</a>
+            <a href="plants.html">Explore Plants</a>
+            <a href="#how-it-works">How It Works</a>
+            <a href="#categories">Categories</a>
+            <a href="#about">About</a>
+            <a href="care.html">Plant Care</a>
+            <a href="orders.html" class="nav-button">My Orders ↗</a>
+        </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <span class="eyebrow">🌱 Small Plants • Big Happiness</span>
+
+            <h1>
+                Bring Nature<br>
+                Into Your <em>Home.</em>
+            </h1>
+
+            <p>
+                Discover beautiful plants for every corner of your home.
+                From easy-care indoor greens to colorful flowering plants,
+                find your perfect green companion with Sproutly.
+            </p>
+
+            <div class="hero-buttons">
+                <a href="plants.html" class="btn btn-primary">
+                    Explore Plants →
+                </a>
+
+                <a href="#how-it-works" class="btn btn-outline">
+                    How It Works ↗
+                </a>
+            </div>
+        </div>
+
+        <div class="hero-image">
+            <img
+                src="https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=1000&q=85"
+                alt="Beautiful green indoor plants"
+            >
+
+            <div class="image-label">
+                <div>
+                    <strong>Grow Something Beautiful</strong>
+                    <p style="font-size:12px; margin-top:5px;">
+                        A little green makes a big difference.
+                    </p>
+                </div>
+                <span style="font-size:25px;">🌿</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- CATEGORIES -->
+    <section class="section categories" id="categories">
+        <div class="section-heading">
+            <p class="small-title">Explore Categories</p>
+            <h2>Find Your Kind of Green</h2>
+            <p>Different plants, different personalities. Find the one you love.</p>
+        </div>
+
+        <div class="category-grid">
+
+            <div class="category-card">
+                <img
+                    src="https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=700&q=80"
+                    alt="Indoor green plants"
+                    loading="lazy"
+                >
+                <div class="category-content">
+                    <h3>Indoor Plants</h3>
+                    <p>Bring freshness and greenery into your living space.</p>
+                    <a href="plants.html" class="text-link">Explore Plants →</a>
+                </div>
+            </div>
+
+            <div class="category-card">
+                <img
+                    src="https://images.unsplash.com/photo-1494972308805-463bc619d34e?auto=format&fit=crop&w=700&q=80"
+                    alt="Flowering plants"
+                    loading="lazy"
+                >
+                <div class="category-content">
+                    <h3>Flowering Plants</h3>
+                    <p>Add a little color and beauty to your everyday life.</p>
+                    <a href="plants.html" class="text-link">Explore Flowers →</a>
+                </div>
+            </div>
+
+            <div class="category-card">
+                <img
+                    src="https://images.unsplash.com/photo-1509423350716-97f9360b4e09?auto=format&fit=crop&w=700&q=80"
+                    alt="Medicinal and useful plants"
+                    loading="lazy"
+                >
+                <div class="category-content">
+                    <h3>Medicinal Plants</h3>
+                    <p>Discover familiar plants like Aloe Vera and Tulsi.</p>
+                    <a href="plants.html" class="text-link">Explore Plants →</a>
+                </div>
+            </div>
+
+            <div class="category-card">
+                <img
+                    src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=700&q=80"
+                    alt="Outdoor garden plants"
+                    loading="lazy"
+                >
+                <div class="category-content">
+                    <h3>Outdoor Plants</h3>
+                    <p>Make your balcony, garden, or outdoor space greener.</p>
+                    <a href="plants.html" class="text-link">Explore Plants →</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- FEATURED PLANTS -->
+    <section class="section" id="featured">
+        <div class="section-heading">
+            <p class="small-title">Our Green Collection</p>
+            <h2>Plants You'll Love</h2>
+            <p>Meet some of our favorite green companions.</p>
+        </div>
+
+        <div class="plant-grid">
+
+            <div class="plant-card">
+                <img
+                    src="images/money.jpeg"
+                    alt="Money plant">
+                    loading="lazy"
+                >
+                <div class="plant-info">
+                    <span class="plant-tag">Easy Care</span>
+                    <h3>Money Plant</h3>
+                    <p>A lovely green companion for your home.</p>
+                    <div class="plant-bottom">
+                        <span class="price">Explore Price</span>
+                        <a href="plants.html" class="plant-btn">View Plant ↗</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="plant-card">
+                <img
+                    
+                src="images/snake.jpeg"
+                    alt="Snake plant">
+                    loading="lazy"
+                >
+                <div class="plant-info">
+                    <span class="plant-tag">Low Maintenance</span>
+                    <h3>Snake Plant</h3>
+                    <p>A stylish plant for your favorite corner.</p>
+                    <div class="plant-bottom">
+                        <span class="price">Explore Price</span>
+                        <a href="plants.html" class="plant-btn">View Plant ↗</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="plant-card">
+                
+               
+                <img src="https://images.unsplash.com/photo-1509423350716-97f9360b4e09?auto=format&fit=crop&w=700&q=80" alt="Aloe Vera">
+                    loading="lazy"
+                >
+                <div class="plant-info">
+                    <span class="plant-tag">Useful Plant</span>
+                    <h3>Aloe Vera</h3>
+                    <p>A familiar green plant for your home garden.</p>
+                    <div class="plant-bottom">
+                        <span class="price">Explore Price</span>
+                        <a href="plants.html" class="plant-btn">View Plant ↗</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="plant-card">
+                <img
+                    
+                src="images/lily.jpeg"
+                    alt="Peace Lily plant">
+                    loading="lazy"
+                >
+                <div class="plant-info">
+                    <span class="plant-tag">Indoor Favorite</span>
+                    <h3>Peace Lily</h3>
+                    <p>A graceful plant for a calm and cozy space.</p>
+                    <div class="plant-bottom">
+                        <span class="price">Explore Price</span>
+                        <a href="plants.html" class="plant-btn">View Plant ↗</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="center-button">
+            <a href="plants.html" class="btn btn-primary">
+                Explore All Plants →
+            </a>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="section how-section" id="how-it-works">
+        <div class="section-heading">
+            <p class="small-title">Simple & Convenient</p>
+            <h2>How Sproutly Works</h2>
+            <p>Your journey to a greener home starts with three simple steps.</p>
+        </div>
+
+        <div class="steps-grid">
+
+            <div class="step-card">
+                <div class="step-icon">🪴</div>
+                <h3>01. Choose Your Plant</h3>
+                <p>
+                    Explore our plant collection and find the perfect plant for your home or garden.
+                </p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-icon">🛒</div>
+                <h3>02. Place Your Order</h3>
+                <p>
+                    Select your favorite plant, add it to your cart,
+                    and complete your order.
+                </p>
+            </div>
+
+            <div class="step-card">
+                <div class="step-icon">🌿</div>
+                <h3>03. Grow & Care</h3>
+                <p>
+                    Welcome your new green companion and explore
+                    our plant care guides to help it thrive.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about-banner" id="about">
+        <div class="about-box">
+            <div>
+                <h2>A Little Green Goes a Long Way.</h2>
+                <p>
+                    Sproutly is a Plant Nursery Management System
+                    designed to make exploring plants and managing
+                    plant orders simple and convenient. Discover
+                    greenery, learn how to care for it, and make
+                    your space feel a little more alive.
+                </p>
+            </div>
+
+            <a href="plants.html" class="btn">
+                Find Your Plant →
+            </a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="footer-top">
+            <a href="index.html" class="logo">
+                <span>🌿</span> Sproutly
+            </a>
+
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="plants.html">Plants</a>
+                <a href="care.html">Plant Care</a>
+                <a href="orders.html">My Orders</a>
+                <a href="admin.html">Admin</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 Sproutly Plant Nursery Management System.</p>
+            <p>Created as a BCA Field Work Project 🌱</p>
+        </div>
+    </footer>
+
+    <script>
+        const menuBtn = document.getElementById("menuBtn");
+        const navLinks = document.getElementById("navLinks");
+
+        menuBtn.addEventListener("click", function () {
+            navLinks.classList.toggle("active");
+        });
+
+        navLinks.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", function () {
+                navLinks.classList.remove("active");
+            });
+        });
+    </script>
+
+</body>
+</html>

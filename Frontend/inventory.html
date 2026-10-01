@@ -1,0 +1,959 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Inventory Management | Sproutly</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+
+        body {
+            background: #F7F6EF;
+        }
+
+        .inventory-page {
+            max-width: 1100px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .inventory-heading {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .inventory-heading h1 {
+            color: #315B43;
+            font-size: 34px;
+            margin-bottom: 8px;
+        }
+
+        .inventory-heading p {
+            color: #777;
+            margin: 0;
+        }
+
+        /* SUMMARY */
+
+        .inventory-summary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-bottom: 30px;
+        }
+
+        .summary-card {
+            background: white;
+            padding: 23px;
+            border-radius: 18px;
+            border: 1px solid #DDE8D7;
+            box-shadow: 0 7px 22px rgba(49, 91, 67, 0.06);
+        }
+
+        .summary-icon {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .summary-card p {
+            color: #777;
+            margin: 0 0 8px;
+            font-size: 14px;
+        }
+
+        .summary-card h2 {
+            color: #315B43;
+            margin: 0;
+            font-size: 29px;
+        }
+
+        /* TABLE */
+
+        .inventory-table-wrap {
+            overflow-x: auto;
+            background: white;
+            border-radius: 18px;
+            border: 1px solid #DDE8D7;
+            box-shadow: 0 7px 22px rgba(49, 91, 67, 0.06);
+        }
+
+        .inventory-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 650px;
+        }
+
+        .inventory-table th,
+        .inventory-table td {
+            padding: 17px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .inventory-table th {
+            background: #315B43;
+            color: white;
+            font-size: 14px;
+        }
+
+        .inventory-table th:first-child {
+            border-radius: 18px 0 0 0;
+        }
+
+        .inventory-table th:last-child {
+            border-radius: 0 18px 0 0;
+        }
+
+        .inventory-table td {
+            color: #444;
+            font-size: 14px;
+        }
+
+        .plant-name {
+            color: #315B43;
+            font-weight: 600;
+        }
+
+        .plant-price {
+            font-weight: 600;
+        }
+
+        /* STOCK CONTROLS */
+
+        .stock-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .stock-controls button {
+            width: 34px;
+            height: 34px;
+            border: none;
+            border-radius: 9px;
+            background: #DDE8D7;
+            color: #315B43;
+            font-size: 20px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .stock-controls button:hover {
+            background: #C9DCC4;
+            transform: scale(1.05);
+        }
+
+        .stock-controls button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .stock-number {
+            font-weight: bold;
+            min-width: 30px;
+            text-align: center;
+            color: #315B43;
+        }
+
+        /* STATUS */
+
+        .stock-status {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .in-stock {
+            background: #DDE8D7;
+            color: #315B43;
+        }
+
+        .low-stock {
+            background: #FFF0CF;
+            color: #946200;
+        }
+
+        .out-stock {
+            background: #FBE2DF;
+            color: #A13D32;
+        }
+
+        /* REFRESH */
+
+        .refresh-stock {
+            margin-top: 20px;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            background: #315B43;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .refresh-stock:hover {
+            background: #244B38;
+        }
+
+        .inventory-note {
+            color: #777;
+            font-size: 13px;
+            margin-top: 15px;
+        }
+
+        .loading-row,
+        .error-row {
+            text-align: center !important;
+            padding: 30px !important;
+            color: #777;
+        }
+
+        .error-row {
+            color: #A13D32;
+        }
+
+        /* MOBILE */
+
+        @media (max-width: 700px) {
+
+            .inventory-summary {
+                grid-template-columns: 1fr;
+            }
+
+            .inventory-page {
+                margin: 25px auto;
+                padding: 15px;
+            }
+
+            .inventory-heading h1 {
+                font-size: 28px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <main class="inventory-page">
+
+
+        <!-- HEADING -->
+
+        <div class="inventory-heading">
+
+            <h1>
+                Inventory Management 🌿
+            </h1>
+
+            <p>
+                Manage your nursery plants and keep track of stock.
+            </p>
+
+        </div>
+
+
+
+        <!-- SUMMARY -->
+
+        <div class="inventory-summary">
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    🌱
+                </div>
+
+                <p>
+                    Total Plant Types
+                </p>
+
+                <h2 id="totalTypes">
+                    —
+                </h2>
+
+            </div>
+
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    📦
+                </div>
+
+                <p>
+                    Total Available Plants
+                </p>
+
+                <h2 id="totalStock">
+                    —
+                </h2>
+
+            </div>
+
+
+
+            <div class="summary-card">
+
+                <div class="summary-icon">
+                    ⚠️
+                </div>
+
+                <p>
+                    Low Stock Items
+                </p>
+
+                <h2 id="lowStockCount">
+                    —
+                </h2>
+
+            </div>
+
+
+        </div>
+
+
+
+        <!-- TABLE -->
+
+        <div class="inventory-table-wrap">
+
+            <table class="inventory-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Plant Name
+                        </th>
+
+                        <th>
+                            Price
+                        </th>
+
+                        <th>
+                            Available Stock
+                        </th>
+
+                        <th>
+                            Status
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="inventoryBody">
+
+                    <tr>
+
+                        <td
+                            colspan="4"
+                            class="loading-row"
+                        >
+                            🌱 Loading inventory...
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+
+        <!-- REFRESH -->
+
+        <button
+            class="refresh-stock"
+            id="refreshStock"
+        >
+            ↻ Refresh Inventory
+        </button>
+
+
+        <p class="inventory-note">
+
+            Stock is connected to the Sproutly database.
+            Changes made here are saved to the database.
+
+        </p>
+
+
+    </main>
+
+
+
+    <script>
+
+
+        /* =====================================
+           BACKEND
+        ===================================== */
+
+        const API_BASE =
+            "http://localhost:5000";
+
+
+        const inventoryBody =
+            document.getElementById(
+                "inventoryBody"
+            );
+
+
+
+        /* =====================================
+           STATUS
+        ===================================== */
+
+        function getStatus(stock) {
+
+
+            if (stock === 0) {
+
+                return `
+                    <span class="stock-status out-stock">
+                        Out of Stock
+                    </span>
+                `;
+
+            }
+
+
+            if (stock <= 5) {
+
+                return `
+                    <span class="stock-status low-stock">
+                        Low Stock
+                    </span>
+                `;
+
+            }
+
+
+            return `
+                <span class="stock-status in-stock">
+                    In Stock
+                </span>
+            `;
+
+        }
+
+
+
+        /* =====================================
+           LOAD INVENTORY
+        ===================================== */
+
+        async function loadInventory() {
+
+
+            try {
+
+
+                inventoryBody.innerHTML = `
+
+                    <tr>
+
+                        <td
+                            colspan="4"
+                            class="loading-row"
+                        >
+                            🌱 Loading inventory...
+                        </td>
+
+                    </tr>
+
+                `;
+
+
+
+                const response =
+                    await fetch(
+                        `${API_BASE}/api/inventory`
+                    );
+
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Unable to load inventory"
+                    );
+
+                }
+
+
+
+                const data =
+                    await response.json();
+
+
+
+                const plants =
+                    Array.isArray(data)
+                        ? data
+                        : (data.inventory || []);
+
+
+
+                /* =============================
+                   NO DATA
+                ============================= */
+
+                if (plants.length === 0) {
+
+                    inventoryBody.innerHTML = `
+
+                        <tr>
+
+                            <td
+                                colspan="4"
+                                class="loading-row"
+                            >
+                                No inventory found.
+                            </td>
+
+                        </tr>
+
+                    `;
+
+                    updateSummary([]);
+
+                    return;
+
+                }
+
+
+
+                /* =============================
+                   TABLE
+                ============================= */
+
+                inventoryBody.innerHTML = "";
+
+
+
+                plants.forEach(function(plant) {
+
+
+                    const plantId =
+                        plant.plant_id ??
+                        plant.id;
+
+
+                    const name =
+                        plant.name ??
+                        "Unknown Plant";
+
+
+                    const price =
+                        Number(
+                            plant.price || 0
+                        );
+
+
+                    const stock =
+                        Number(
+                            plant.stock || 0
+                        );
+
+
+
+                    const row =
+                        document.createElement("tr");
+
+
+
+                    row.innerHTML = `
+
+                        <td>
+
+                            <span class="plant-name">
+
+                                🌿 ${name}
+
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <span class="plant-price">
+
+                                ₹${price.toLocaleString("en-IN")}
+
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            <div class="stock-controls">
+
+
+                                <button
+                                    data-id="${plantId}"
+                                    data-change="-1"
+                                    ${stock === 0 ? "disabled" : ""}
+                                    title="Decrease stock"
+                                >
+                                    −
+                                </button>
+
+
+                                <span class="stock-number">
+
+                                    ${stock}
+
+                                </span>
+
+
+                                <button
+                                    data-id="${plantId}"
+                                    data-change="1"
+                                    title="Increase stock"
+                                >
+                                    +
+                                </button>
+
+
+                            </div>
+
+                        </td>
+
+
+                        <td>
+
+                            ${getStatus(stock)}
+
+                        </td>
+
+                    `;
+
+
+
+                    inventoryBody.appendChild(row);
+
+                });
+
+
+
+                updateSummary(plants);
+
+
+            }
+
+
+            catch (error) {
+
+
+                console.error(
+                    "Inventory error:",
+                    error
+                );
+
+
+                inventoryBody.innerHTML = `
+
+                    <tr>
+
+                        <td
+                            colspan="4"
+                            class="error-row"
+                        >
+                            ⚠️ Unable to load inventory.
+                            Please make sure the backend
+                            server is running.
+                        </td>
+
+                    </tr>
+
+                `;
+
+
+                document.getElementById(
+                    "totalTypes"
+                ).textContent = "—";
+
+
+                document.getElementById(
+                    "totalStock"
+                ).textContent = "—";
+
+
+                document.getElementById(
+                    "lowStockCount"
+                ).textContent = "—";
+
+            }
+
+        }
+
+
+
+        /* =====================================
+           SUMMARY
+        ===================================== */
+
+        function updateSummary(plants) {
+
+
+            const totalTypes =
+                plants.length;
+
+
+            const totalStock =
+                plants.reduce(
+                    function(total, plant) {
+
+                        return total +
+                            Number(
+                                plant.stock || 0
+                            );
+
+                    },
+                    0
+                );
+
+
+            const lowStock =
+                plants.filter(
+                    function(plant) {
+
+                        return Number(
+                            plant.stock || 0
+                        ) <= 5;
+
+                    }
+                ).length;
+
+
+
+            document.getElementById(
+                "totalTypes"
+            ).textContent =
+                totalTypes;
+
+
+            document.getElementById(
+                "totalStock"
+            ).textContent =
+                totalStock;
+
+
+            document.getElementById(
+                "lowStockCount"
+            ).textContent =
+                lowStock;
+
+        }
+
+
+
+        /* =====================================
+           UPDATE STOCK
+        ===================================== */
+
+        async function updateStock(
+            plantId,
+            newStock
+        ) {
+
+
+            try {
+
+
+                const response =
+                    await fetch(
+                        `${API_BASE}/api/inventory/${plantId}`,
+                        {
+
+                            method: "PUT",
+
+                            headers: {
+
+                                "Content-Type":
+                                    "application/json"
+
+                            },
+
+                            body: JSON.stringify({
+
+                                stock: newStock
+
+                            })
+
+                        }
+                    );
+
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Stock update failed"
+                    );
+
+                }
+
+
+
+                /*
+                 * Reload from database
+                 * after successful update
+                 */
+
+                await loadInventory();
+
+
+            }
+
+
+            catch (error) {
+
+
+                console.error(
+                    "Stock update error:",
+                    error
+                );
+
+
+                alert(
+                    "Unable to update stock. Please check the backend server."
+                );
+
+            }
+
+        }
+
+
+
+        /* =====================================
+           PLUS / MINUS BUTTONS
+        ===================================== */
+
+        inventoryBody.addEventListener(
+            "click",
+            async function(event) {
+
+
+                const button =
+                    event.target.closest(
+                        "button"
+                    );
+
+
+                if (!button) {
+                    return;
+                }
+
+
+                const plantId =
+                    Number(
+                        button.dataset.id
+                    );
+
+
+                const change =
+                    Number(
+                        button.dataset.change
+                    );
+
+
+                /*
+                 * Get current row stock
+                 */
+
+                const row =
+                    button.closest("tr");
+
+
+                const stockElement =
+                    row.querySelector(
+                        ".stock-number"
+                    );
+
+
+                const currentStock =
+                    Number(
+                        stockElement.textContent
+                    );
+
+
+                const newStock =
+                    currentStock + change;
+
+
+
+                if (newStock < 0) {
+                    return;
+                }
+
+
+
+                /*
+                 * Disable button while saving
+                 */
+
+                button.disabled = true;
+
+
+
+                await updateStock(
+                    plantId,
+                    newStock
+                );
+
+            }
+        );
+
+
+
+        /* =====================================
+           REFRESH BUTTON
+        ===================================== */
+
+        document
+            .getElementById("refreshStock")
+            .addEventListener(
+                "click",
+                loadInventory
+            );
+
+
+
+        /* =====================================
+           INITIAL LOAD
+        ===================================== */
+
+        loadInventory();
+
+
+    </script>
+
+
+</body>
+
+</html>

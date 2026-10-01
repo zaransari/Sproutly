@@ -1,0 +1,725 @@
+
+/* ==============================
+   SPROUTLY - COMMON WEBSITE STYLE
+   ============================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+:root {
+    --green: #315B43;
+    --cream: #F7F6EF;
+    --sage: #DDE8D7;
+    --olive: #B7C6A5;
+    --brown: #8B6F50;
+    --dark: #28382C;
+    --white: #FFFFFF;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    line-height: 1.7;
+}
+
+h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+    color: var(--green);
+    line-height: 1.3;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+img {
+    max-width: 100%;
+    display: block;
+}
+
+button, input, select {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* NAVBAR */
+
+header, nav {
+    width: 100%;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 18px;
+    padding: 20px 7%;
+    background: var(--cream);
+}
+
+nav a {
+    color: var(--green);
+    font-size: 14px;
+    font-weight: 500;
+    margin-right: 18px;
+}
+
+nav a:hover {
+    color: var(--brown);
+}
+
+/* HERO SECTION */
+
+.hero, .plants-hero {
+    padding: 75px 7%;
+    background: var(--sage);
+    text-align: center;
+}
+
+.hero h1, .plants-hero h1 {
+    font-size: clamp(35px, 5vw, 58px);
+    margin: 15px 0;
+}
+
+.hero p, .plants-hero p {
+    max-width: 700px;
+    margin: 15px auto;
+    color: #526253;
+}
+
+/* BUTTONS */
+
+.btn, button, .cart-btn {
+    display: inline-block;
+    background: var(--green);
+    color: var(--white);
+    border: none;
+    border-radius: 30px;
+    padding: 12px 24px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.btn:hover, button:hover, .cart-btn:hover {
+    background: var(--brown);
+    transform: translateY(-2px);
+}
+
+/* GENERAL SECTIONS */
+
+section {
+    padding: 55px 7%;
+}
+
+section h2 {
+    font-size: 34px;
+    margin-bottom: 15px;
+}
+
+section p {
+    color: #657064;
+}
+
+/* CATEGORY / FEATURE CARDS */
+
+.category-grid, .categories, .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.category-card, .feature-card {
+    background: var(--white);
+    border-radius: 18px;
+    padding: 25px;
+    box-shadow: 0 5px 20px rgba(49, 91, 67, 0.08);
+}
+
+/* PLANTS PAGE */
+
+.plants-hero {
+    padding: 65px 7%;
+}
+
+.plant-controls {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 30px auto;
+}
+
+.plant-controls input,
+.plant-controls select {
+    padding: 13px 18px;
+    border: 1px solid #ccd7c8;
+    border-radius: 30px;
+    background: white;
+    color: var(--dark);
+    outline: none;
+}
+
+.plant-controls input {
+    width: min(350px, 100%);
+}
+
+.plant-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+    gap: 25px;
+    margin-top: 30px;
+}
+
+.plant-card {
+    background: var(--white);
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(49, 91, 67, 0.08);
+    transition: 0.3s;
+}
+
+.plant-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(49, 91, 67, 0.15);
+}
+
+.plant-card img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+}
+
+.plant-card h3 {
+    font-size: 22px;
+    margin: 15px 18px 5px;
+}
+
+.plant-card p {
+    margin: 8px 18px;
+    font-size: 14px;
+}
+
+.plant-card .price {
+    color: var(--green);
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.plant-card .cart-btn {
+    margin: 12px 18px 20px;
+}
+
+/* FOOTER */
+
+footer {
+    background: var(--green);
+    color: var(--white);
+    padding: 35px 7%;
+    text-align: center;
+}
+
+footer p, footer a {
+    color: var(--white);
+}
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 600px) {
+    nav {
+        padding: 18px 5%;
+        justify-content: center;
+    }
+
+    nav a {
+        margin-right: 10px;
+        font-size: 12px;
+    }
+
+    section {
+        padding: 40px 5%;
+    }
+
+    .hero, .plants-hero {
+        padding: 45px 5%;
+    }
+
+    section h2 {
+        font-size: 28px;
+    }
+
+    .plant-grid {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 15px;
+    }
+
+    .plant-card img {
+        height: 180px;
+    }
+}
+/* =====================================
+   SPROUTLY - PREMIUM PLANT PAGE DESIGN
+   ===================================== */
+
+.plants-hero {
+    background: linear-gradient(135deg, #e8efdf, #f7f6ef, #dce8d5);
+    padding: 85px 7% 75px;
+    text-align: center;
+    border-radius: 0 0 45px 45px;
+}
+
+.plants-hero h1 {
+    font-size: clamp(38px, 5vw, 64px);
+    color: #315b43;
+    letter-spacing: -1px;
+    margin-bottom: 18px;
+}
+
+.plants-hero p {
+    max-width: 650px;
+    margin: 0 auto;
+    color: #647260;
+    font-size: 16px;
+    line-height: 1.9;
+}
+
+/* SEARCH AND FILTER */
+
+.plant-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.plant-controls input,
+.plant-controls select {
+    height: 52px;
+    border: 1px solid #dce4d6;
+    border-radius: 30px;
+    padding: 0 22px;
+    background: #fff;
+    color: #315b43;
+    font-size: 14px;
+    box-shadow: 0 5px 20px rgba(49, 91, 67, 0.05);
+    transition: 0.3s ease;
+}
+
+.plant-controls input {
+    width: min(380px, 100%);
+}
+
+.plant-controls input:focus,
+.plant-controls select:focus {
+    outline: none;
+    border-color: #789777;
+    box-shadow: 0 0 0 4px rgba(120, 151, 119, 0.15);
+}
+
+/* PLANT GRID */
+
+.plant-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 28px;
+    padding: 10px 7% 70px;
+}
+
+/* PLANT CARDS */
+
+.plant-card {
+    background: #fff;
+    border: 1px solid #edf0e8;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 8px 28px rgba(49, 91, 67, 0.07);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.plant-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 40px rgba(49, 91, 67, 0.15);
+}
+
+/* PLANT IMAGE */
+
+.plant-card img {
+    width: 100%;
+    height: 255px;
+    object-fit: cover;
+    background: #e8efdf;
+    transition: transform 0.5s ease;
+}
+
+.plant-card:hover img {
+    transform: scale(1.04);
+}
+
+/* PLANT DETAILS */
+
+.plant-card h3 {
+    font-size: 23px;
+    color: #315b43;
+    margin: 20px 20px 6px;
+}
+
+.plant-card p {
+    color: #7a8375;
+    font-size: 14px;
+    line-height: 1.8;
+    margin: 5px 20px;
+}
+
+.plant-card .price {
+    color: #315b43;
+    font-size: 22px;
+    font-weight: 600;
+    margin-top: 12px;
+}
+
+/* ADD TO CART BUTTON */
+
+.plant-card .cart-btn {
+    margin: 18px 20px 22px;
+    padding: 13px 20px;
+    border-radius: 30px;
+    background: #315b43;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.plant-card .cart-btn:hover {
+    background: #8b6f50;
+    transform: translateY(-2px);
+}
+
+/* NO PLANTS MESSAGE */
+
+#noPlants {
+    text-align: center;
+    color: #647260;
+    padding: 30px;
+    font-size: 16px;
+}
+
+/* RESPONSIVE DESIGN */
+
+@media (max-width: 900px) {
+    .plant-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 22px;
+    }
+
+    .plant-card img {
+        height: 230px;
+    }
+}
+
+@media (max-width: 550px) {
+    .plants-hero {
+        padding: 55px 5%;
+        border-radius: 0 0 30px 30px;
+    }
+
+    .plant-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+        padding: 10px 4% 45px;
+    }
+
+    .plant-card {
+        border-radius: 17px;
+    }
+
+    .plant-card img {
+        height: 165px;
+    }
+
+    .plant-card h3 {
+        font-size: 18px;
+        margin: 13px 12px 5px;
+    }
+
+    .plant-card p {
+        font-size: 12px;
+        margin: 5px 12px;
+    }
+
+    .plant-card .price {
+        font-size: 18px;
+    }
+
+    .plant-card .cart-btn {
+        margin: 12px;
+        padding: 11px 10px;
+        font-size: 12px;
+    }
+}
+/* SHOPPING CART DESIGN */
+
+.shopping-cart {
+    background: #eef2e8;
+    margin: 40px 7%;
+    padding: 40px;
+    border-radius: 28px;
+}
+
+.cart-heading {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.cart-label {
+    color: #8b6f50;
+    font-size: 12px;
+    letter-spacing: 3px;
+    font-weight: 600;
+}
+
+.cart-heading h2 {
+    font-size: 34px;
+    margin: 10px 0;
+}
+
+.cart-heading p {
+    color: #74806f;
+}
+
+.empty-cart {
+    text-align: center;
+    padding: 30px;
+    background: white;
+    border-radius: 18px;
+    color: #74806f;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    padding: 20px;
+    background: white;
+    border-radius: 16px;
+    margin-bottom: 12px;
+}
+
+.cart-item h4 {
+    font-size: 18px;
+}
+
+.cart-item p {
+    color: #74806f;
+    font-size: 14px;
+}
+
+.cart-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.cart-actions button {
+    padding: 7px 13px;
+    border-radius: 20px;
+    background: #dce8d5;
+    color: #315b43;
+}
+
+.remove-btn {
+    background: #f5e4dc !important;
+    color: #9b4b36 !important;
+}
+
+.cart-total {
+    text-align: right;
+    margin-top: 25px;
+    padding-top: 20px;
+    border-top: 1px solid #d5dfce;
+}
+
+.cart-total h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+.checkout-btn {
+    background: #315b43;
+    color: white;
+    border: none;
+    padding: 14px 25px;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .shopping-cart {
+        margin: 25px 4%;
+        padding: 22px 15px;
+    }
+
+    .cart-item {
+        flex-wrap: wrap;
+    }
+
+    .cart-total {
+        text-align: center;
+    }
+
+    .cart-heading h2 {
+        font-size: 27px;
+    }
+}
+/* =================================
+   SPROUTLY - BEAUTIFUL CHECKOUT FORM
+   ================================= */
+
+.checkout-section {
+    display: block;
+    width: 100%;
+    max-width: 850px;
+    margin: 60px auto;
+    padding: 45px;
+    background: #F7F6EF;
+    border: 1px solid #DDE8D7;
+    border-radius: 24px;
+    box-sizing: border-box;
+}
+
+.checkout-section[hidden] {
+    display: none !important;
+}
+
+.checkout-heading {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.checkout-label {
+    color: #315B43;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+}
+
+.checkout-heading h2 {
+    font-size: 34px;
+    color: #24483B;
+    margin: 0 0 14px;
+    line-height: 1.3;
+}
+
+.checkout-heading p:last-child {
+    font-size: 16px;
+    color: #6B756B;
+    line-height: 1.7;
+}
+
+.checkout-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+}
+
+.form-group label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #315B43;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    min-height: 56px;
+    padding: 16px 18px;
+    box-sizing: border-box;
+    border: 1px solid #D5DDCF;
+    border-radius: 12px;
+    background: #FFFFFF;
+    color: #2D3D32;
+    font-family: inherit;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group textarea {
+    min-height: 140px;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    border-color: #315B43;
+    box-shadow: 0 0 0 3px rgba(49, 91, 67, 0.10);
+}
+
+.checkout-form .checkout-btn {
+    width: 100%;
+    min-height: 58px;
+    border: none;
+    border-radius: 12px;
+    background: #315B43;
+    color: #FFFFFF;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+.checkout-form .checkout-btn:hover {
+    background: #24483B;
+    transform: translateY(-2px);
+}
+
+/* MOBILE DESIGN */
+
+@media (max-width: 600px) {
+    .checkout-section {
+        margin: 30px auto;
+        padding: 24px 18px;
+        border-radius: 18px;
+    }
+
+    .checkout-heading h2 {
+        font-size: 27px;
+    }
+
+    .checkout-heading p:last-child {
+        font-size: 14px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+        font-size: 15px;
+    }
+}
