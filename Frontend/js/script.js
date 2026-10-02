@@ -1,6 +1,6 @@
 
 document.addEventListener("DOMContentLoaded", function () {
-    const API_URL = "http://localhost:5000/api";
+    const API_URL = "https://sproutly-production-6c2d.up.railway.app/api/plants";
 
     // ==============================
     // PLANT SEARCH AND CATEGORY FILTER
